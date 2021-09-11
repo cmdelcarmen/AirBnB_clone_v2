@@ -28,7 +28,7 @@ def c_test(text):
 @app.route('/python/<text>')
 def python_text(text="is cool"):
     text = text.replace('_', ' ')
-    return "Python {}".format(text.replace())
+    return "Python {}".format(text)
 
 if __name__ == "__main__":
     app.debug = True
