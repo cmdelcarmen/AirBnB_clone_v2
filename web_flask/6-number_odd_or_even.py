@@ -9,40 +9,40 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', strict_slashes=False)
 def index():
     return "Hello HBNB!"
 
 
-@app.route('/hbnb')
+@app.route('/hbnb', strict_slashes=False)
 def hbnb():
     return "HBNB"
 
 
-@app.route('/c/<text>')
+@app.route('/c/<text>', strict_slashes=False)
 def c_test(text):
     return "C {}".format(text.replace('_', ' '))
 
 
-@app.route('/python')
-@app.route('/python/<text>')
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
 def python_text(text="is cool"):
     return "Python {}".format(text.replace('_', ' '))
 
 
-@app.route('/number/<int:n>')
+@app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
     if isinstance(n, int):
         return "{} is a number".format(n)
 
 
-@app.route('/number_template/<int:n>')
+@app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     if isinstance(n, int):
         return render_template('/5-number.html', n=n)
 
 
-@app.route('/number_odd_or_even/<int:n>')
+@app.route('/number_odd_or_even/<int:n>', strict_slashes=False)
 def number_odd_or_even(n):
 
     if isinstance(n, int):
@@ -55,5 +55,4 @@ def number_odd_or_even(n):
 
 if __name__ == "__main__":
     app.debug = True
-    app.url_map.strict_slashes = False
     app.run(host="0.0.0.0", port=5000)
