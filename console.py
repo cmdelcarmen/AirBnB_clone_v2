@@ -136,9 +136,6 @@ class HBNBCommand(cmd.Cmd):
                     obj = HBNBCommand.classes[clss]()
                     print(obj.id)
 
-                    print("CMD_ARGS")
-                    print(cmd_args)
-
                     for attrs in cmd_args:
                         attrs = attrs.split('=')
 
@@ -155,7 +152,6 @@ class HBNBCommand(cmd.Cmd):
                         if attr_name == 'state_id':
                             obj.state_id = attr_value
                             s = cmd_args[1]
-                            print(s)
                             obj.name = s.split('=')[1][1:-1].replace('_', '')
                             obj.save()
                             return
