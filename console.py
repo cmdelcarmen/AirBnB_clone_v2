@@ -2,6 +2,7 @@
 """ Console Module """
 import cmd
 import sys
+from os import getenv
 from models.base_model import BaseModel
 from models.__init__ import storage
 from models.user import User
@@ -135,6 +136,9 @@ class HBNBCommand(cmd.Cmd):
                     obj = HBNBCommand.classes[clss]()
                     print(obj.id)
 
+                    print("CMD_ARGS")
+                    print(cmd_args)
+
                     for attrs in cmd_args:
                         attrs = attrs.split('=')
 
@@ -147,6 +151,33 @@ class HBNBCommand(cmd.Cmd):
                         else:
                             attr_value = attrs[1]
                             attr_value = eval(attr_value)
+
+                        if attr_name == 'state_id':
+                            obj.state_id = attr_value
+                            s = cmd_args[1]
+                            print(s)
+                            obj.name = s.split('=')[1][1:-1].replace('_', '')
+                            obj.save()
+                            return
+                            '''for key, value in storage.all().items():
+                                if attr_value == value.id:
+                                    # print(value.name)
+                                    # print(value.__class__.__name__)
+                                    # attr_name = value.__class__.__name__
+                                    # attr_value = value.name
+                                    print("-----------------")
+                                    print("obj ", obj)
+                                    print("value ", value)
+                                    print("value id", value.id)
+                                    print("attr_name ", attr_name)
+                                    print("attr_value ", attr_value)
+                                    print("---------------------")
+                                    obj.state_id = value.id
+                                    obj.name = "San Francisco"
+                                    obj.save()
+                                    return
+                                    # setattr(City, "state_id", value.id)
+                                    # return '''
 
                         setattr(obj, attr_name, attr_value)
                         obj.save()
