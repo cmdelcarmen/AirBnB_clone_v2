@@ -141,6 +141,7 @@ class HBNBCommand(cmd.Cmd):
 
                         attr_name = attrs[0]
 
+
                         if '\"' in attrs[1]:
                             attr_value = (attrs[1])[1:-1]
                             if '_' in attr_value:
@@ -149,31 +150,13 @@ class HBNBCommand(cmd.Cmd):
                             attr_value = attrs[1]
                             attr_value = eval(attr_value)
 
+
                         if attr_name == 'state_id':
                             obj.state_id = attr_value
                             s = cmd_args[1]
                             obj.name = s.split('=')[1][1:-1].replace('_', '')
                             obj.save()
                             return
-                            '''for key, value in storage.all().items():
-                                if attr_value == value.id:
-                                    # print(value.name)
-                                    # print(value.__class__.__name__)
-                                    # attr_name = value.__class__.__name__
-                                    # attr_value = value.name
-                                    print("-----------------")
-                                    print("obj ", obj)
-                                    print("value ", value)
-                                    print("value id", value.id)
-                                    print("attr_name ", attr_name)
-                                    print("attr_value ", attr_value)
-                                    print("---------------------")
-                                    obj.state_id = value.id
-                                    obj.name = "San Francisco"
-                                    obj.save()
-                                    return
-                                    # setattr(City, "state_id", value.id)
-                                    # return '''
 
                         setattr(obj, attr_name, attr_value)
                         obj.save()
