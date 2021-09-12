@@ -25,6 +25,7 @@ def state_show(id):
         state = None
     return render_template('9-states.html', state=state)
 
+
 @app.teardown_appcontext
 def teardown(ext):
     storage.close()
