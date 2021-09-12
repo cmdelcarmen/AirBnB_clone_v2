@@ -61,3 +61,7 @@ class FileStorage:
             return
         instance = obj.to_dict()['__class__'] + '.' + obj.id
         del FileStorage.__objects[instance]
+
+    def close(self):
+        '''reloads'''
+        FileStorage.reload()
